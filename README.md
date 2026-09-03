@@ -25,27 +25,52 @@ AIC/BIC, forecasts volatility out-of-sample, and evaluates 99% Value-at-Risk (Va
 
 ## Project Pipeline
 
-S&P 500 Prices
-        ↓
-Log Returns
-        ↓
-ADF Stationarity Test
-        ↓
-Squared Returns
-        ↓
-Ljung-Box + ACF
-        ↓
-GARCH / EGARCH / GJR-GARCH
-        ↓
-AIC / BIC Model Selection
-        ↓
-Walk-Forward Volatility Forecast
-        ↓
-99% VaR
-        ↓
-VaR Backtesting
-        ↓
-Kupiec Coverage Test
+                 S&P 500
+                    │
+                    ▼
+            Historical prices
+                    │
+                    ▼
+              Log returns
+                    │
+                    ▼
+        ┌──────────────────────┐
+        │ Stationarity testing │
+        │        ADF           │
+        └──────────┬───────────┘
+                   │
+                   ▼
+        ┌──────────────────────┐
+        │ Volatility diagnostics│
+        │ Ljung-Box + ACF       │
+        └──────────┬───────────┘
+                   │
+                   ▼
+       ┌──────────────────────────┐
+       │  GARCH-family models     │
+       │                          │
+       │ GARCH                    │
+       │ EGARCH                   │
+       │ GJR-GARCH                │
+       └────────────┬─────────────┘
+                    │
+                    ▼
+             AIC / BIC comparison
+                    │
+                    ▼
+              Best model
+                    │
+                    ▼
+          Walk-forward forecasting
+                    │
+                    ▼
+                99% VaR
+                    │
+                    ▼
+             VaR backtesting
+                    │
+                    ▼
+             Kupiec test
 
 ---
 
